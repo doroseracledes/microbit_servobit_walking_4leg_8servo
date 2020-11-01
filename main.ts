@@ -5,13 +5,17 @@ function FR (A: number, B: number) {
 }
 function walk3 (step: number) {
     if (step == 0) {
-        FL(-45, -15)
+        FL(-15, 15)
+        RR(45, -30)
         basic.pause(500)
-        FL(-30, 15)
+        FL(-30, 0)
+        RR(30, 0)
     } else if (step == 1) {
-        FR(45, -15)
+        FR(15, -15)
+        RL(-45, 30)
         basic.pause(500)
-        FR(30, -15)
+        FR(30, 0)
+        RL(-30, 0)
     }
 }
 function FL (A: number, B: number) {
