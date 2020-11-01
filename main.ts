@@ -10,17 +10,17 @@ function FL (A: number, B: number) {
 }
 function walk (step: number) {
     if (step == 0) {
-        FL(-45, 15)
-        RR(15, -15)
-        basic.pause(500)
+        FL(-45, 10)
+        RR(15, 30)
+        basic.pause(200)
         FL(-30, 30)
-        RR(30, 10)
+        RR(30, -15)
     } else if (step == 1) {
-        FR(45, -15)
-        RL(-15, 15)
-        basic.pause(500)
-        FR(30, 15)
-        RL(-30, 30)
+        FR(45, 0)
+        RL(-15, -30)
+        basic.pause(200)
+        FR(30, -30)
+        RL(-30, 15)
     }
 }
 function resetAll () {
@@ -38,25 +38,10 @@ function RR (A: number, B: number) {
     ServoBit.waitServo(RR_A)
     ServoBit.setServo(RR_B, B)
 }
-function walk2 (step: number) {
-    if (step == 0) {
-        FL(-45, 10)
-        RR(15, 30)
-        basic.pause(200)
-        FL(-30, 30)
-        RR(30, -15)
-    } else if (step == 1) {
-        FR(45, 0)
-        RL(-15, -30)
-        basic.pause(200)
-        FR(30, -30)
-        RL(-30, 15)
-    }
-}
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "W") {
         for (let index = 0; index <= 1; index++) {
-            walk2(index)
+            walk(index)
             basic.pause(200)
         }
     } else if (receivedString == "J") {
@@ -95,7 +80,7 @@ basic.pause(100)
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
         for (let index = 0; index <= 3; index++) {
-            walk(index)
+        	
         }
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 1; index++) {
