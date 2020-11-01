@@ -3,25 +3,36 @@ function FR (A: number, B: number) {
     ServoBit.waitServo(FR_A)
     ServoBit.setServo(FR_B, B)
 }
-function FL (A: number, B: number) {
-    ServoBit.setServo(FL_A, A)
-    ServoBit.waitServo(FL_A)
-    ServoBit.setServo(FL_B, B)
+function step () {
+    FL(1)
+    basic.pause(500)
+    FL(2)
 }
-function walk (step: number) {
-    if (step == 0) {
+function FL (move: number) {
+    if (move == 1) {
+        ServoBit.setServo(FL_A, -45)
+        ServoBit.waitServo(FL_A)
+        ServoBit.setServo(FL_B, -15)
+        ServoBit.waitServo(FL_B)
+        ServoBit.setServo(FL_A, -15)
+    } else if (move == 2) {
+        ServoBit.setServo(FL_A, -15)
+    }
+}
+function walk (step2: number) {
+    if (step2 == 0) {
         basic.showIcon(IconNames.SmallSquare)
-        FL(-15, 15)
+        FL(1)
         RR(15, -15)
-    } else if (step == 1) {
+    } else if (step2 == 1) {
         basic.showIcon(IconNames.Square)
         FR(15, -15)
         RL(-15, 15)
-    } else if (step == 2) {
+    } else if (step2 == 2) {
         basic.showIcon(IconNames.SmallDiamond)
-        FL(-35, -15)
+        FL(1)
         RR(30, 15)
-    } else if (step == 3) {
+    } else if (step2 == 3) {
         basic.showIcon(IconNames.Diamond)
         FR(35, 15)
         RL(-35, 15)
@@ -42,16 +53,16 @@ function RR (A: number, B: number) {
     ServoBit.waitServo(RR_A)
     ServoBit.setServo(RR_B, B)
 }
-function walk2 (step: number) {
-    if (step == 0) {
+function walk2 (step2: number) {
+    if (step2 == 0) {
         basic.showIcon(IconNames.SmallSquare)
-        FL(-15, 15)
+        FL(1)
         RR(15, -15)
         FR(15, -15)
         RL(-15, 15)
-    } else if (step == 1) {
+    } else if (step2 == 1) {
         basic.showIcon(IconNames.Square)
-        FL(-35, -15)
+        FL(1)
         RR(30, 15)
         FR(35, 15)
         RL(-35, 15)
@@ -59,9 +70,8 @@ function walk2 (step: number) {
 }
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "W") {
-        for (let index = 0; index <= 3; index++) {
-            walk(index)
-        }
+        step()
+        basic.pause(200)
     } else if (receivedString == "J") {
         for (let index = 0; index < 1; index++) {
             basic.showIcon(IconNames.Butterfly)
@@ -97,8 +107,8 @@ resetAll()
 basic.pause(100)
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        for (let index3 = 0; index3 <= 3; index3++) {
-            walk(index3)
+        for (let index = 0; index <= 3; index++) {
+            step()
         }
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 1; index++) {
@@ -106,5 +116,4 @@ basic.forever(function () {
             resetAll()
         }
     }
-    basic.pause(200)
 })
