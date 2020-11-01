@@ -10,17 +10,17 @@ function FL (A: number, B: number) {
 }
 function walk (step: number) {
     if (step == 0) {
-        FL(-45, 10)
-        RR(15, 30)
+        FL(-40, 10)
+        RR(15, 40)
         basic.pause(200)
         FL(-30, 30)
-        RR(30, -15)
+        RR(30, -10)
     } else if (step == 1) {
-        FR(45, 0)
-        RL(-15, -30)
+        FR(40, 10)
+        RL(-15, -40)
         basic.pause(200)
         FR(30, -30)
-        RL(-30, 15)
+        RL(-30, 10)
     }
 }
 function resetAll () {
@@ -80,7 +80,8 @@ basic.pause(100)
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
         for (let index = 0; index <= 3; index++) {
-        	
+            walk(index)
+            basic.pause(200)
         }
     } else if (input.buttonIsPressed(Button.B)) {
         for (let index = 0; index < 1; index++) {
