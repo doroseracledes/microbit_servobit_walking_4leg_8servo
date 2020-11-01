@@ -55,7 +55,7 @@ function walk2 (step: number) {
 }
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "W") {
-        for (let index = 0; index <= 3; index++) {
+        for (let index = 0; index <= 1; index++) {
             walk2(index)
             basic.pause(200)
         }
