@@ -38,21 +38,6 @@ function RR (A: number, B: number) {
     ServoBit.waitServo(RR_A)
     ServoBit.setServo(RR_B, B)
 }
-function walk2 (step: number) {
-    if (step == 0) {
-        basic.showIcon(IconNames.SmallSquare)
-        FL(1, 1)
-        RR(15, -15)
-        FR(15, -15)
-        RL(-15, 15)
-    } else if (step == 1) {
-        basic.showIcon(IconNames.Square)
-        FL(1, 1)
-        RR(30, 15)
-        FR(35, 15)
-        RL(-35, 15)
-    }
-}
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "W") {
         for (let index = 0; index <= 3; index++) {
