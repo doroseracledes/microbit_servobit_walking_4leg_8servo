@@ -10,17 +10,17 @@ function FL (A: number, B: number) {
 }
 function walk (step: number) {
     if (step == 0) {
-        FL(-15, 15)
-        RR(45, -30)
+        FL(-45, 15)
+        RR(15, -15)
         basic.pause(500)
-        FL(-30, 0)
-        RR(30, 0)
+        FL(-30, 30)
+        RR(30, 10)
     } else if (step == 1) {
-        FR(15, -15)
-        RL(-45, 30)
+        FR(45, -15)
+        RL(-15, 15)
         basic.pause(500)
-        FR(30, 0)
-        RL(-30, 0)
+        FR(30, 15)
+        RL(-30, 30)
     }
 }
 function resetAll () {
@@ -38,10 +38,25 @@ function RR (A: number, B: number) {
     ServoBit.waitServo(RR_A)
     ServoBit.setServo(RR_B, B)
 }
+function walk2 (step: number) {
+    if (step == 0) {
+        FL(-45, 10)
+        RR(15, 30)
+        basic.pause(200)
+        FL(-30, 30)
+        RR(30, -15)
+    } else if (step == 1) {
+        FR(45, 0)
+        RL(-15, -30)
+        basic.pause(200)
+        FR(30, -30)
+        RL(-30, 15)
+    }
+}
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "W") {
         for (let index = 0; index <= 3; index++) {
-            walk(index)
+            walk2(index)
             basic.pause(200)
         }
     } else if (receivedString == "J") {
